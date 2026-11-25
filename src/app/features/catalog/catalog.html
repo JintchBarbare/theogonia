@@ -1,0 +1,128 @@
+<section class="catalog-page">
+  <div class="catalog-container">
+    <div class="catalog-header">
+      <h1 class="catalog-title">
+        Gods, heroes <span class="amp">&amp;</span> the half-divine
+      </h1>
+      <p class="catalog-subtitle">
+        Each figure is measured on three virtues, from one to five stars.
+        Narrow the archive by lineage, or demand a minimum of strength,
+        heroism or wisdom.
+      </p>
+    </div>
+
+    <hr class="catalog-divider" />
+
+    <div class="filter-box">
+      <div class="filter-top">
+        <div class="category-pills">
+          @for (option of categoryOptions(); track option.value) {
+            <button
+              type="button"
+              class="pill"
+              [class.is-active]="selectedCategory() === option.value"
+              (click)="selectCategory(option.value)"
+            >
+              <span>{{ option.label }}</span>
+              <span class="pill-count">{{ option.count }}</span>
+            </button>
+          }
+        </div>
+
+        <button type="button" class="reset-btn" (click)="resetFilters()">
+          <span>↻</span>
+          <span>Reset filters</span>
+        </button>
+      </div>
+
+      <div class="stat-filters">
+        @for (stat of statDefinitions; track stat.key) {
+          @let min = minStats()[stat.key];
+
+          <div class="stat-filter-col">
+            <div class="stat-filter-label">
+              <span class="stat-name">{{ stat.icon }} {{ stat.label }}</span>
+              <span class="stat-min">· {{ min > 0 ? min + '+ ★' : 'ANY' }}</span>
+            </div>
+
+            <div class="star-selector">
+              @for (star of starValues; track star) {
+                <button
+                  type="button"
+                  class="star-btn"
+                  [class.is-filled]="star <= min"
+                  (click)="setMinStat(stat.key, star)"
+                  [attr.aria-label]="'Minimum ' + stat.label.toLowerCase() + ' ' + star"
+                >
+                  {{ star <= min ? '★' : '☆' }}
+                </button>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    @if (loading()) {
+      <div class="status-box">
+        <p>The archive is loading…</p>
+      </div>
+    } @else if (error(); as message) {
+      <div class="status-box">
+        <p>{{ message }}</p>
+        <button type="button" class="retry-btn" (click)="loadProducts()">Try again</button>
+      </div>
+    } @else if (filteredProducts().length === 0) {
+      <div class="status-box">
+        <p>No figures match these filters.</p>
+        <button type="button" class="retry-btn" (click)="resetFilters()">Clear filters</button>
+      </div>
+    } @else {
+      <div class="cards-grid">
+        @for (item of filteredProducts(); track item.id) {
+          <article class="char-card">
+            <div class="card-top">
+              <span class="badge">{{ item.type || item.category }}</span>
+              <span class="card-id">{{ item.id.toUpperCase() }}</span>
+            </div>
+
+            <div class="card-stats">
+              @for (stat of statDefinitions; track stat.key) {
+                <div class="stat-row">
+                  <span class="stat-label">{{ stat.icon }} {{ stat.label }}</span>
+                  <span class="stat-stars">{{ starsFor(item, stat.key) }}</span>
+                </div>
+              }
+            </div>
+
+            <a [routerLink]="['/products', item.id]" class="card-image-wrap">
+              <img [src]="item.image" [alt]="item.title" class="card-image" />
+            </a>
+
+            <div class="card-body">
+              <div class="card-domain">{{ item.domain }}</div>
+              <h2 class="card-title">
+                <a [routerLink]="['/products', item.id]">{{ item.title }}</a>
+              </h2>
+              <p class="card-desc">{{ item.description }}</p>
+            </div>
+
+            @let qty = cartService.getQuantity(item.id);
+
+            @if (qty === 0) {
+              <button type="button" class="add-btn" (click)="addToPantheon(item)">
+                + Add to pantheon
+              </button>
+            } @else {
+              <div class="qty-control">
+                <button type="button" class="qty-btn" (click)="decreaseQty(item.id)" aria-label="Decrease quantity">−</button>
+                <span class="qty-value">{{ qty }}</span>
+                <button type="button" class="qty-btn" (click)="increaseQty(item.id)" aria-label="Increase quantity">+</button>
+              </div>
+            }
+          </article>
+        }
+      </div>
+    }
+  </div>
+</section>

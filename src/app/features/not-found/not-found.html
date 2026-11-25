@@ -1,0 +1,15 @@
+<section class="not-found-page">
+  <div class="not-found-container">
+    <div class="eyebrow">ERROR {{ code }}</div>
+    <h1 class="not-found-title">{{ title }}</h1>
+    <p class="not-found-message">{{ message }}</p>
+
+    <div class="not-found-actions">
+      @for (action of actions; track action.link) {
+        <a [routerLink]="action.link" [class]="'btn btn-' + action.variant">
+          {{ action.label }}
+        </a>
+      }
+    </div>
+  </div>
+</section>

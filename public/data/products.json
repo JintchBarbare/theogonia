@@ -1,0 +1,290 @@
+[
+  {
+    "id": "p1",
+    "title": "Zeus",
+    "type": "GOD",
+    "category": "GOD",
+    "domain": "SKY & THUNDER",
+    "image": "/images/image_1.jpg",
+    "description": "King of Olympus, wielder of the thunderbolt and keeper of oaths between gods and mortals.",
+    "stats": {
+      "strength": 5,
+      "heroism": 3,
+      "wisdom": 4
+    },
+    "powers": [
+      "Thunderbolt",
+      "Sky & Weather Control",
+      "Kingship & Sovereignty"
+    ]
+  },
+  {
+    "id": "p2",
+    "title": "Hera",
+    "type": "GOD",
+    "category": "GOD",
+    "domain": "MARRIAGE & QUEENSHIP",
+    "image": "/images/image_2.jpg",
+    "description": "Queen of Olympus, goddess of marriage, family, and sovereign authority among the immortals.",
+    "stats": {
+      "strength": 4,
+      "heroism": 3,
+      "wisdom": 4
+    },
+    "powers": [
+      "Queenship & Sovereignty",
+      "Blessing & Wrath of Marriage",
+      "Divine Authority"
+    ]
+  },
+  {
+    "id": "p3",
+    "title": "Poseidon",
+    "type": "GOD",
+    "category": "GOD",
+    "domain": "SEA & EARTHQUAKE",
+    "image": "/images/image_3.jpg",
+    "description": "Earth-shaker and lord of the seas, whose temper moved tides and toppled cities.",
+    "stats": {
+      "strength": 5,
+      "heroism": 2,
+      "wisdom": 3
+    },
+    "powers": [
+      "Trident",
+      "Sea & Tide Control",
+      "Earthquake Generation"
+    ]
+  },
+  {
+    "id": "p4",
+    "title": "Heracles",
+    "type": "DEMIGOD",
+    "category": "DEMIGOD",
+    "domain": "STRENGTH & LABOR",
+    "image": "/images/image_4.jpg",
+    "description": "Son of Zeus who bore twelve labors in atonement and earned a seat on Olympus.",
+    "stats": {
+      "strength": 5,
+      "heroism": 4,
+      "wisdom": 2
+    },
+    "powers": [
+      "Superhuman Strength",
+      "Twelve Labors Endurance",
+      "Nemean Lion Pelt & Club"
+    ]
+  },
+  {
+    "id": "p5",
+    "title": "Hades",
+    "type": "GOD",
+    "category": "GOD",
+    "domain": "THE UNDERWORLD",
+    "image": "/images/image_5.jpg",
+    "description": "Silent ruler of the dead — the most just of the three brothers, and the least worshipped.",
+    "stats": {
+      "strength": 4,
+      "heroism": 2,
+      "wisdom": 5
+    },
+    "powers": [
+      "Underworld Dominion",
+      "Bident",
+      "Helm of Darkness"
+    ]
+  },
+  {
+    "id": "p6",
+    "title": "Aphrodite",
+    "type": "GOD",
+    "category": "GOD",
+    "domain": "LOVE & DESIRE",
+    "image": "/images/image_6.jpg",
+    "description": "Risen from sea foam, goddess of desire whose favor set the Trojan War in motion.",
+    "stats": {
+        "strength": 2,
+        "heroism": 1,
+        "wisdom": 3
+    },
+    "powers": [
+        "Love & Desire Manipulation",
+        "Allure & Charm",
+        "Sea-Foam Origin"
+    ]
+  }, 
+  {
+  "id": "p7",
+  "title": "Athena",
+  "type": "GOD",
+  "category": "GOD",
+  "domain": "WISDOM & CRAFT",
+  "image": "/images/image_7.jpg",
+  "description": "Born armored from her father's brow, patron of Athens and of every well-laid plan.",
+  "stats": {
+    "strength": 4,
+    "heroism": 4,
+    "wisdom": 5
+  },
+  "powers": [
+    "Strategic Wisdom",
+    "Craftsmanship & Artifice",
+    "Aegis & Tactical Mastery"
+  ]
+},
+{
+  "id": "p8",
+  "title": "Achilles",
+  "type": "DEMIGOD",
+  "category": "DEMIGOD",
+  "domain": "WAR & GLORY",
+  "image": "/images/image_8.jpg",
+  "description": "Near-invincible hero of Troy, undone by a single heel and a long, bitter rage.",
+  "stats": {
+    "strength": 5,
+    "heroism": 4,
+    "wisdom": 2
+  },
+  "powers": [
+    "Near-Invulnerability",
+    "Martial Prowess",
+    "Battle Fury"
+  ]
+},
+{
+  "id": "p9",
+  "title": "Cronos",
+  "type": "TITAN",
+  "category": "TITAN",
+  "domain": "HARVEST & SOVEREIGNTY",
+  "image": "/images/image_9.jpg",
+  "description": "Leader of the Titans who overthrew Uranus and ruled the cosmos before his children rose against him.",
+  "stats": {
+    "strength": 5,
+    "heroism": 2,
+    "wisdom": 3
+  },
+  "powers": [
+    "Adamantine Scythe",
+    "Titan Dominion",
+    "Cosmic Sovereignty"
+  ]
+},
+{
+  "id": "p10",
+  "title": "Rhea",
+  "type": "TITAN",
+  "category": "TITAN",
+  "domain": "MOTHERHOOD & FERTILITY",
+  "image": "/images/image_10.jpg",
+  "description": "Titaness mother of the Olympians who saved Zeus from Cronos and preserved the next generation of gods.",
+  "stats": {
+    "strength": 3,
+    "heroism": 4,
+    "wisdom": 4
+  },
+  "powers": [
+    "Maternal Protection",
+    "Earth & Fertility",
+    "Deception & Rescue"
+  ]
+},
+{
+  "id": "p11",
+  "title": "Daphne",
+  "type": "NYMPH",
+  "category": "NYMPH",
+  "domain": "RIVERS & LAUREL",
+  "image": "/images/image_11.jpg",
+  "description": "A river nymph who fled Apollo and became the laurel tree he would wear forever.",
+  "stats": {
+    "strength": 1,
+    "heroism": 3,
+    "wisdom": 3
+  },
+  "powers": [
+    "Laurel Metamorphosis",
+    "Swift Evasion",
+    "River-Nymph Agility"
+  ]
+},
+{
+  "id": "p12",
+  "title": "Calypso",
+  "type": "NYMPH",
+  "category": "NYMPH",
+  "domain": "OGYGIA & CONCEALMENT",
+  "image": "/images/image_12.jpg",
+  "description": "Island nymph who kept Odysseus seven years and offered him a life without death.",
+  "stats": {
+    "strength": 2,
+    "heroism": 1,
+    "wisdom": 4
+  },
+  "powers": [
+    "Island Seclusion",
+    "Offer of Immortality",
+    "Enchantment & Song"
+  ]
+},
+{
+  "id": "p13",
+  "title": "Perseus",
+  "type": "DEMIGOD",
+  "category": "DEMIGOD",
+  "domain": "BANE OF THE GORGON",
+  "image": "/images/image_13.jpg",
+  "description": "Slayer of Medusa, armed by the gods and guided by a reflection in bronze.",
+  "stats": {
+    "strength": 3,
+    "heroism": 4,
+    "wisdom": 4
+  },
+  "powers": [
+    "Gorgon Slayer",
+    "Winged Sandals & Helm",
+    "Bronze Mirror Tactics"
+  ]
+},
+{
+  "id": "p14",
+  "title": "Artemis",
+  "type": "GODDESS",
+  "category": "GODDESS",
+  "domain": "THE HUNT & MOON",
+  "image": "/images/image_14.jpg",
+  "description": "Twin of Apollo, huntress of the wild places and protector of the young.",
+  "stats": {
+    "strength": 4,
+    "heroism": 3,
+    "wisdom": 3
+  },
+  "powers": [
+    "Master Archery",
+    "Wilderness & Hunt",
+    "Lunar & Nature Affinity"
+  ]
+},
+{
+  "id": "p15",
+  "title": "Apollo",
+  "type": "GOD",
+  "category": "GOD",
+  "domain": "LIGHT & PROPHECY",
+  "image": "/images/image_15.jpg",
+  "description": "God of light, music and healing; the voice behind the oracle at Delphi.",
+  "stats": {
+    "strength": 3,
+    "heroism": 3,
+    "wisdom": 5
+  },
+  "powers": [
+    "Prophecy & Oracle",
+    "Light & Healing",
+    "Music & Lyre"
+  ]
+}
+
+
+
+]

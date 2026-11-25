@@ -1,0 +1,56 @@
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-brand-col">
+        <a routerLink="/" class="footer-brand">
+          <svg
+            class="footer-logo-icon"
+            viewBox="0 0 36 36"
+            width="32"
+            height="32"
+            aria-hidden="true"
+          >
+            <circle cx="18" cy="18" r="15.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+            <circle cx="18" cy="18" r="7.5" fill="none" stroke="currentColor" stroke-width="1.2" />
+            <line x1="2.5" y1="18" x2="10.5" y2="18" stroke="currentColor" stroke-width="1.2" />
+            <line x1="25.5" y1="18" x2="33.5" y2="18" stroke="currentColor" stroke-width="1.2" />
+            <line x1="18" y1="2.5" x2="18" y2="10.5" stroke="currentColor" stroke-width="1.2" />
+            <line x1="18" y1="25.5" x2="18" y2="33.5" stroke="currentColor" stroke-width="1.2" />
+            <circle cx="18" cy="18" r="1.8" fill="currentColor" />
+          </svg>
+          <span class="footer-brand-name">{{ brandTitle }}</span>
+        </a>
+
+        <p class="footer-tagline">{{ tagline }}</p>
+      </div>
+
+      <nav class="footer-nav-col" aria-label="Footer navigation">
+        <div class="footer-heading">WANDER</div>
+        <ul class="footer-links">
+          @for (item of navItems; track item.path) {
+            <li>
+              <a
+                [routerLink]="item.path"
+                routerLinkActive="is-active"
+                [routerLinkActiveOptions]="{ exact: item.exact ?? false }"
+              >
+                {{ item.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </nav>
+
+      <div class="footer-colophon-col">
+        <div class="footer-heading">{{ colophonTitle }}</div>
+        <p class="footer-colophon-text">{{ colophonText }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-container footer-bottom-inner">
+      <span>{{ bottomNote }}</span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,105 @@
+<section class="contact-page">
+  <div class="contact-container">
+    <aside class="contact-info">
+      <div class="eyebrow">CORRESPONDENCE</div>
+      <h1 class="contact-heading">
+        Write to <span class="italic-accent">the archive</span>
+      </h1>
+      <p class="contact-intro">
+        Found a misremembered myth, a missing nymph, or a reason to collaborate?
+        Send word — every letter is read by a keeper of the archive.
+      </p>
+
+      <hr class="info-divider" />
+
+      @for (item of contactInfo; track item.title) {
+        <div class="info-item">
+          <span class="info-icon" aria-hidden="true">{{ item.icon }}</span>
+          <div>
+            <div class="info-title">{{ item.title }}</div>
+            <div class="info-sub">{{ item.note }}</div>
+          </div>
+        </div>
+      }
+    </aside>
+
+    <div class="form-card">
+      <div class="form-header">
+        <h2 class="form-title">Send a message</h2>
+        <p class="form-note">All fields are required.</p>
+      </div>
+
+      @if (showErrorAlert) {
+        <div class="alert alert-error" role="alert">
+          <span class="alert-icon">!</span>
+          <span>One field needs your attention before this can be sent.</span>
+        </div>
+      }
+
+      @if (successMessage(); as success) {
+        <div class="alert alert-success" role="status">
+          <span class="alert-icon">✓</span>
+          <span>{{ success }}</span>
+        </div>
+      }
+
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="fields-grid">
+          @for (field of textFields; track field.name) {
+            <div class="field">
+              <label [for]="field.name" [class.label-error]="hasError(field.name)">
+                {{ field.label }}
+              </label>
+              <input
+                [id]="field.name"
+                [type]="field.type"
+                [formControlName]="field.name"
+                [placeholder]="field.placeholder"
+                [class.input-error]="hasError(field.name)"
+              />
+              @if (errorMessage(field.name); as error) {
+                <small class="field-error">! {{ error }}</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="field">
+          <label for="subject" [class.label-error]="hasError('subject')">Subject</label>
+          <select id="subject" formControlName="subject" [class.input-error]="hasError('subject')">
+            <option value="">Choose a subject</option>
+            @for (subject of subjects; track subject) {
+              <option [value]="subject">{{ subject }}</option>
+            }
+          </select>
+          @if (errorMessage('subject'); as error) {
+            <small class="field-error">! {{ error }}</small>
+          }
+        </div>
+
+        <div class="field">
+          <div class="field-top-row">
+            <label for="message" [class.label-error]="hasError('message')">Message</label>
+            <span class="char-counter">{{ messageLength }} / {{ maxMessageLength }}</span>
+          </div>
+          <textarea
+            id="message"
+            rows="5"
+            [attr.maxlength]="maxMessageLength"
+            formControlName="message"
+            placeholder="Sing, O Muse..."
+            [class.input-error]="hasError('message')"
+          ></textarea>
+          @if (errorMessage('message'); as error) {
+            <small class="field-error">! {{ error }}</small>
+          }
+        </div>
+
+        <button type="submit" class="submit-btn">
+          <span aria-hidden="true">➤</span>
+          <span>Send message</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,38 @@
+<header class="site-header">
+  <div class="header-inner">
+    <a routerLink="/" class="brand" aria-label="Theogony home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+          <path d="M0 0h24v24H0z" fill="none" />
+          <g fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="2" stroke-width="1.5">
+            <path d="m12.6 4.59l8.05 14.57l.6 1.09H2.75l.6-1.09L11.4 4.59L12 3.5z" />
+            <path d="m12.36 4.16l3.18 5.78l.36.66l-.57.49l-.51.42l-.57.49l-.59-.46l-1.07-.83l-.59-.46l-.59.46l-1.07.83l-.59.46l-.57-.49l-.51-.42l-.57-.49l.36-.66l3.18-5.78l.36-.66z" />
+          </g>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-title">Theogony</span>
+        <span class="brand-subtitle">ARCHIVE OF THE PANTHEON</span>
+      </span>
+    </a>
+
+    <nav class="nav-group" aria-label="Main navigation">
+      <div class="nav-links">
+        @for (item of navItems; track item.path) {
+          <a
+            [routerLink]="item.path"
+            routerLinkActive="is-active"
+            [routerLinkActiveOptions]="{ exact: item.exact ?? false }"
+            class="nav-link"
+          >
+            {{ item.label }}
+          </a>
+        }
+      </div>
+
+      <a routerLink="/cart" routerLinkActive="is-active" class="cart-btn">
+        <span>Your Pantheon: {{ cartCount() }}</span>
+      </a>
+    </nav>
+  </div>
+</header>

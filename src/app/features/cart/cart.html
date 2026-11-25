@@ -1,0 +1,142 @@
+<section class="cart-page">
+  <div class="cart-container">
+    <header class="cart-header">
+      <div class="eyebrow">YOUR PANTHEON</div>
+      <h1 class="cart-title">
+        The company <span class="italic-accent">you keep</span>
+      </h1>
+      <p class="cart-subtitle">
+        {{ figuresLabel() }} gathered. Their virtues are tallied below.
+      </p>
+    </header>
+
+    <hr class="cart-divider" />
+
+    @if (dispatchSuccessMessage(); as message) {
+      <div class="dispatch-banner" role="status">
+        <span class="dispatch-badge">✓</span>
+        <span>{{ message }}</span>
+      </div>
+    }
+
+    @if (cartService.items().length === 0) {
+      <div class="empty-card">
+        <h2>Your pantheon is currently empty</h2>
+        <p>Summon gods, heroes, or half-divine figures from the archive to measure their combined virtues.</p>
+        <a routerLink="/catalog" class="summon-link-btn">
+          <span>Summon figures</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    } @else {
+      <div class="cart-grid">
+        <div class="items-list">
+          @for (entry of cartService.items(); track entry.product.id) {
+            <article class="pantheon-card">
+              <a [routerLink]="['/products', entry.product.id]" class="item-thumb-wrap">
+                <img [src]="entry.product.image" [alt]="entry.product.title" class="item-thumb" />
+              </a>
+
+              <div class="item-main">
+                <span class="item-badge">{{ entry.product.type || entry.product.category }}</span>
+                <h2 class="item-name">
+                  <a [routerLink]="['/products', entry.product.id]">{{ entry.product.title }}</a>
+                </h2>
+                <div class="item-domain">{{ entry.product.domain }}</div>
+              </div>
+
+              <div class="item-stats">
+                @for (stat of statDefinitions; track stat.key) {
+                  <div class="stat-line">
+                    <span class="stat-name">{{ stat.icon }} {{ stat.label }}</span>
+                    <span class="stat-stars">{{ starsFor(entry.product, stat.key) }}</span>
+                    <span class="stat-num">{{ statValue(entry.product, stat.key) }}</span>
+                  </div>
+                }
+              </div>
+
+              <div class="item-actions">
+                <button
+                  type="button"
+                  class="remove-btn"
+                  (click)="cartService.removeItem(entry.product.id)"
+                  aria-label="Remove figure"
+                  title="Remove"
+                >
+                  ×
+                </button>
+
+                <div class="qty-stepper">
+                  <button
+                    type="button"
+                    class="step-btn"
+                    (click)="cartService.decrement(entry.product.id)"
+                    aria-label="Decrease quantity"
+                  >
+                    −
+                  </button>
+                  <span class="step-count">{{ entry.quantity }}</span>
+                  <button
+                    type="button"
+                    class="step-btn"
+                    (click)="cartService.increment(entry.product.id)"
+                    aria-label="Increase quantity"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </article>
+          }
+        </div>
+
+        <aside class="summary-card">
+          <div class="summary-eyebrow">SUMMARY</div>
+          <h2 class="summary-title">Sum of virtues</h2>
+
+          <div class="summary-bars">
+            @for (bar of summaryBars(); track bar.key) {
+              <div class="bar-block">
+                <div class="bar-top">
+                  <span class="bar-label">{{ bar.icon }} Total {{ bar.label }}</span>
+                  <span class="bar-score">
+                    <strong>{{ bar.total }}</strong> / {{ maxStatPossible() }}
+                  </span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" [style.width.%]="bar.percent"></div>
+                </div>
+              </div>
+            }
+          </div>
+
+          <hr class="summary-divider" />
+
+          <div class="grand-row">
+            <div>
+              <div class="grand-label">GRAND TOTAL</div>
+              <div class="grand-sub">All stars, all virtues</div>
+            </div>
+            <div class="grand-value">{{ grandTotal() }}</div>
+          </div>
+
+          <div class="summary-buttons">
+            <button type="button" class="btn-dispatch" (click)="dispatchArmy()">
+              <span>⚔ Dispatch army</span>
+            </button>
+
+            <a routerLink="/catalog" class="btn-summon">
+              <span>Summon more</span>
+              <span aria-hidden="true">→</span>
+            </a>
+
+            <button type="button" class="btn-clear" (click)="cartService.clear()">
+              <span aria-hidden="true">🗑</span>
+              <span>Clear all</span>
+            </button>
+          </div>
+        </aside>
+      </div>
+    }
+  </div>
+</section>

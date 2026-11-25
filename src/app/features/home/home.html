@@ -1,0 +1,21 @@
+<section class="hero">
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1 class="hero-title">{{ title }}</h1>
+      <p class="hero-quote">{{ quote }}</p>
+    </div>
+
+    <div class="hero-actions">
+      @for (action of actions; track action.link) {
+        <a [routerLink]="action.link" class="btn" [class]="'btn btn-' + action.variant">
+          <span>{{ action.label }}</span>
+          @if (action.showArrow) {
+            <span aria-hidden="true">→</span>
+          }
+        </a>
+      }
+    </div>
+  </div>
+</section>

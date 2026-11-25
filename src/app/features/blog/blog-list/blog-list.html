@@ -1,0 +1,47 @@
+<section class="blog-page">
+  <div class="blog-container">
+    <header class="blog-header">
+      <div class="eyebrow">CHRONICLES</div>
+      <h1 class="blog-title">
+        Tales from <span class="italic-accent">the archive</span>
+      </h1>
+      <p class="blog-subtitle">
+        Stories gathered for those who keep the old tales alive.
+      </p>
+    </header>
+
+    <hr class="blog-divider" />
+
+    @if (loading()) {
+      <div class="status-box">
+        <p>The chronicles are loading…</p>
+      </div>
+    } @else if (error(); as message) {
+      <div class="status-box">
+        <p>{{ message }}</p>
+        <button type="button" class="retry-btn" (click)="loadPosts()">Try again</button>
+      </div>
+    } @else {
+      <div class="posts-grid">
+        @for (post of posts(); track post.id) {
+          <article class="post-card">
+            <div class="post-meta">
+              <span class="post-category">{{ post.tags[0] }}</span>
+              <span class="post-read">{{ post.views }} views</span>
+            </div>
+
+            <h2 class="post-title">
+              <a [routerLink]="['/blog', post.id]">{{ post.title }}</a>
+            </h2>
+            <p class="post-excerpt">{{ post.body }}</p>
+
+            <a [routerLink]="['/blog', post.id]" class="read-link">
+              <span>Read the chronicle</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </article>
+        }
+      </div>
+    }
+  </div>
+</section>

@@ -1,0 +1,87 @@
+<section class="detail-page">
+  <div class="detail-container">
+    <div class="top-bar">
+      <a routerLink="/catalog" class="back-btn">
+        <span aria-hidden="true">←</span>
+        <span>Return to Catalog</span>
+      </a>
+    </div>
+
+    @if (loading()) {
+      <div class="state-card">
+        <p>Loading the record…</p>
+      </div>
+    } @else if (character(); as char) {
+      <div class="detail-grid">
+        <div class="portrait-col">
+          <div class="portrait-frame">
+            <img [src]="char.image" [alt]="char.title" class="portrait-img" />
+          </div>
+          <p class="portrait-caption">{{ char.title }} — {{ char.domain }}</p>
+        </div>
+
+        <div class="info-col">
+          <div class="meta-row">
+            <span class="type-tag">{{ char.type || char.category }}</span>
+            <span class="domain-tag">{{ char.domain }}</span>
+          </div>
+
+          <h1 class="char-title">{{ char.title }}</h1>
+          <p class="char-subtitle">{{ char.category }} · {{ char.domain }}</p>
+
+          <div class="virtue-box">
+            <div class="virtue-heading">VIRTUE ASSESSMENT</div>
+
+            <div class="virtue-grid">
+              @for (virtue of virtues(); track virtue.key) {
+                <div class="virtue-item">
+                  <div class="virtue-label">{{ virtue.label }}</div>
+                  <div class="virtue-stars">{{ virtue.stars }}</div>
+                  <div class="virtue-score">{{ virtue.value }} / {{ maxStars }}</div>
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="section-block">
+            <h2 class="section-title">Mythological Chronicle</h2>
+            <p class="chronicle-text">{{ char.description }}</p>
+          </div>
+
+          @if (char.powers.length > 0) {
+            <div class="section-block">
+              <h2 class="section-title">Sacred Powers &amp; Attributes</h2>
+              <div class="powers-list">
+                @for (power of char.powers; track power) {
+                  <span class="power-chip">{{ power }}</span>
+                }
+              </div>
+            </div>
+          }
+
+          @let qty = inCartQty();
+
+          <div class="cart-actions">
+            @if (qty === 0) {
+              <button type="button" class="add-cart-btn" (click)="addToPantheon()">
+                + Add to Pantheon
+              </button>
+            } @else {
+              <div class="cart-live-controls">
+                <button type="button" class="live-btn" (click)="decreaseQty()" aria-label="Decrease quantity">−</button>
+                <span class="live-qty">{{ qty }}</span>
+                <button type="button" class="live-btn" (click)="increaseQty()" aria-label="Increase quantity">+</button>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    } @else {
+      <div class="state-card">
+        <h2>Figure not found</h2>
+        <p>The requested record does not exist in the archive.</p>
+        <a routerLink="/catalog" class="back-btn">Return to Catalog</a>
+      </div>
+    }
+  </div>
+</section>
